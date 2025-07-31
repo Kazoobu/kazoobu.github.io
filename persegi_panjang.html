@@ -1,45 +1,46 @@
 <!DOCTYPE html>
 <html lang="id">
-
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Persegi Panjang</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<body>
+  <body>
     <h2>Hitung Persegi Panjang</h2>
     <label for="panjang">Panjang:</label>
-    <input type="number" id="panjang"><br>
+    <input type="text" id="panjang" autocomplete="off" /><br />
     <label for="lebar">Lebar:</label>
-    <input type="number" id="lebar"><br>
+    <input type="text" id="lebar" autocomplete="off" /><br />
 
-    <input type="radio" name="opsi" value="luas" checked> Luas<br>
-    <input type="radio" name="opsi" value="keliling"> Keliling<br>
+    <input type="radio" name="opsi" value="luas" checked /> Luas<br />
+    <input type="radio" name="opsi" value="keliling" /> Keliling<br />
 
     <button onclick="hitung()">Hitung</button>
     <p id="hasil"></p>
 
-    <br>
+    <br />
     <a href="index.html"><button>Kembali ke Home</button></a>
 
-
     <script>
-        function hitung() {
-            const p = parseFloat(document.getElementById('panjang').value);
-            const l = parseFloat(document.getElementById('lebar').value);
-            const opsi = document.querySelector('input[name="opsi"]:checked').value;
-            let hasil = 0;
+      function hitung() {
+        const p = parseFloat(document.getElementById("panjang").value);
+        const l = parseFloat(document.getElementById("lebar").value);
+        const opsi = document.querySelector('input[name="opsi"]:checked').value;
+        let hasil = 0;
 
-            if (opsi === 'luas') {
-                hasil = p * l;
-                document.getElementById('hasil').innerText = `Luas persegi panjang = ${hasil}`;
-            } else {
-                hasil = 2 * (p + l);
-                document.getElementById('hasil').innerText = `Keliling persegi panjang = ${hasil}`;
-            }
+        if (opsi === "luas") {
+          hasil = p * l;
+          document.getElementById(
+            "hasil"
+          ).innerText = `Luas persegi panjang = ${hasil}`;
+        } else {
+          hasil = 2 * (p + l);
+          document.getElementById(
+            "hasil"
+          ).innerText = `Keliling persegi panjang = ${hasil}`;
         }
+      }
     </script>
-</body>
-
+  </body>
 </html>
