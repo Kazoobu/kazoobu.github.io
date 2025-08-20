@@ -19,18 +19,30 @@ ul {
 }
 
 li {
-  margin: 50px 0;
+  margin: 30px 0;
 }
 
+/* Tombol link */
 a {
   text-decoration: none;
   background: #219ebc;
   color: white;
-  padding: 10px 30px;
+  padding: 12px 25px;
   border-radius: 8px;
   transition: 0.3s;
+  display: inline-flex; /* biar svg & teks sejajar */
+  align-items: center; /* sejajarkan secara vertikal */
+  gap: 10px; /* jarak antara svg dan teks */
+  font-size: 18px;
+  font-weight: bold;
 }
 
 a:hover {
   background: #023047;
+}
+
+/* SVG di dalam link */
+a svg {
+  display: inline-block;
+  vertical-align: middle;
 }
