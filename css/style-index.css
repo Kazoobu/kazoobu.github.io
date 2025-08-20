@@ -1,0 +1,36 @@
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #a2d2ff, #bde0fe);
+  text-align: center;
+  padding: 50px;
+}
+
+h1 {
+  color: #023047;
+}
+
+p {
+  font-size: 18px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin: 50px 0;
+}
+
+a {
+  text-decoration: none;
+  background: #219ebc;
+  color: white;
+  padding: 10px 30px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+a:hover {
+  background: #023047;
+}
