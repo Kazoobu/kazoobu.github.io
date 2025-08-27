@@ -2,41 +2,207 @@
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
-    <title>Persegi</title>
-    <link rel="stylesheet" href="css/style-persegi.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hitung Persegi</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background: #f8f9fa;
+      }
+      .card {
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      h2 {
+        text-align: center;
+        margin: 20px 0;
+        font-weight: bold;
+      }
+      .rumus {
+        font-weight: bold;
+        margin-top: 10px;
+      }
+      .btn-reset {
+        background-color: #f0ad4e;
+        border: none;
+        color: white;
+      }
+      .btn-reset:hover {
+        background-color: #ec971f;
+      }
+      .hasil {
+        margin: 10px 0;
+        font-size: 16px;
+        font-weight: bold;
+        color: #0d6efd;
+      }
+      .svg-shape {
+        margin-bottom: 15px;
+      }
+    </style>
   </head>
 
   <body>
-    <h2>Hitung Persegi</h2>
-    <label for="sisi">Sisi:</label>
-    <input type="text" id="sisi" autocomplete="off" /><br />
+    <header
+      class="bg-primary text-white text-center py-4 mb-4 shadow-sm rounded-bottom"
+    >
+      <h1 class="mb-1">Penghitung Bangun Datar</h1>
+    </header>
+    <div class="container">
+      <h2>Hitung Persegi</h2>
+      <div class="row g-4">
+        <!-- Card Luas -->
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header bg-primary text-white text-center">
+              Luas Persegi
+            </div>
+            <div class="card-body text-center">
+              <!-- SVG Persegi -->
+              <div class="svg-shape">
+                <svg width="120" height="120">
+                  <rect
+                    x="10"
+                    y="10"
+                    width="100"
+                    height="100"
+                    stroke="black"
+                    fill="none"
+                    stroke-width="3"
+                  />
+                </svg>
+              </div>
 
-    <input type="radio" name="opsi" value="luas" checked /> Luas (S x S)<br />
-    <input type="radio" name="opsi" value="keliling" /> Keliling (4 x S)<br />
+              <p>Rumus Luas Persegi yaitu:</p>
+              <p class="rumus">L = S × S</p>
+              <p>
+                Di mana:<br />
+                L = Luas<br />
+                S = Sisi
+              </p>
 
-    <button onclick="hitung()">Hitung</button>
-    <p id="hasil"></p>
+              <h5 class="mt-3">Hitung Luas Persegi</h5>
+              <input
+                type="number"
+                id="sisiLuas"
+                class="form-control mb-2"
+                placeholder="Nilai Sisi"
+              />
 
-    <br />
-    <a href="index.html"><button>Kembali ke Home</button></a>
+              <!-- Hasil dipindah ke atas tombol -->
+              <p class="hasil" id="hasilLuas"></p>
+
+              <button
+                class="btn btn-primary btn-sm w-100 mb-2"
+                onclick="hitungLuas()"
+              >
+                Hitung
+              </button>
+              <button
+                class="btn btn-reset btn-sm w-100"
+                onclick="resetHasil('hasilLuas','sisiLuas')"
+              >
+                Reset
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card Keliling -->
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header bg-primary text-white text-center">
+              Keliling Persegi
+            </div>
+            <div class="card-body text-center">
+              <!-- SVG Persegi -->
+              <div class="svg-shape">
+                <svg width="120" height="120">
+                  <rect
+                    x="10"
+                    y="10"
+                    width="100"
+                    height="100"
+                    stroke="black"
+                    fill="none"
+                    stroke-width="3"
+                  />
+                </svg>
+              </div>
+
+              <p>Rumus Keliling Persegi yaitu:</p>
+              <p class="rumus">K = 4 × S</p>
+              <p>
+                Di mana:<br />
+                K = Keliling<br />
+                S = Sisi
+              </p>
+
+              <h5 class="mt-3">Hitung Keliling Persegi</h5>
+              <input
+                type="number"
+                id="sisiKeliling"
+                class="form-control mb-2"
+                placeholder="Nilai Sisi"
+              />
+
+              <!-- Hasil dipindah ke atas tombol -->
+              <p class="hasil" id="hasilKeliling"></p>
+
+              <button
+                class="btn btn-primary btn-sm w-100 mb-2"
+                onclick="hitungKeliling()"
+              >
+                Hitung
+              </button>
+              <button
+                class="btn btn-reset btn-sm w-100"
+                onclick="resetHasil('hasilKeliling','sisiKeliling')"
+              >
+                Reset
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tombol kembali -->
+      <div class="text-center mt-4">
+        <a href="index.html" class="btn btn-secondary">⬅ Kembali ke Home</a>
+      </div>
+    </div>
 
     <script>
-      function hitung() {
-        const sisi = parseFloat(document.getElementById("sisi").value);
-        const opsi = document.querySelector('input[name="opsi"]:checked').value;
-        let hasil = 0;
-
-        if (opsi === "luas") {
-          hasil = sisi * sisi;
-          document.getElementById(
-            "hasil"
-          ).innerText = `Luas persegi = ${hasil}`;
-        } else {
-          hasil = 4 * sisi;
-          document.getElementById(
-            "hasil"
-          ).innerText = `Keliling persegi = ${hasil}`;
+      function hitungLuas() {
+        const sisi = parseFloat(document.getElementById("sisiLuas").value);
+        if (!sisi) {
+          document.getElementById("hasilLuas").innerText =
+            "Masukkan nilai sisi!";
+          return;
         }
+        const hasil = sisi * sisi;
+        document.getElementById("hasilLuas").innerText =
+          "Luas Persegi = " + hasil;
+      }
+
+      function hitungKeliling() {
+        const sisi = parseFloat(document.getElementById("sisiKeliling").value);
+        if (!sisi) {
+          document.getElementById("hasilKeliling").innerText =
+            "Masukkan nilai sisi!";
+          return;
+        }
+        const hasil = 4 * sisi;
+        document.getElementById("hasilKeliling").innerText =
+          "Keliling Persegi = " + hasil;
+      }
+
+      function resetHasil(idHasil, idInput) {
+        document.getElementById(idHasil).innerText = "";
+        document.getElementById(idInput).value = "";
       }
     </script>
   </body>

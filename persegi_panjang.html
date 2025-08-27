@@ -2,44 +2,222 @@
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
-    <title>Persegi Panjang</title>
-    <link rel="stylesheet" href="css/style-persegipanjang.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hitung Persegi Panjang</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background: #f8f9fa;
+      }
+      .card {
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      h2 {
+        text-align: center;
+        margin: 20px 0;
+        font-weight: bold;
+      }
+      .rumus {
+        font-weight: bold;
+        margin-top: 10px;
+      }
+      .btn-reset {
+        background-color: #f0ad4e;
+        border: none;
+        color: white;
+      }
+      .btn-reset:hover {
+        background-color: #ec971f;
+      }
+      .hasil {
+        margin: 10px 0;
+        font-size: 16px;
+        font-weight: bold;
+        color: #0d6efd;
+      }
+      .svg-shape {
+        margin-bottom: 15px;
+      }
+    </style>
   </head>
 
   <body>
-    <h2>Hitung Persegi Panjang</h2>
-    <label for="panjang">Panjang:</label>
-    <input type="text" id="panjang" autocomplete="off" /><br />
-    <label for="lebar">Lebar:</label>
-    <input type="text" id="lebar" autocomplete="off" /><br />
+    <header
+      class="bg-primary text-white text-center py-4 mb-4 shadow-sm rounded-bottom"
+    >
+      <h1 class="mb-1">Penghitung Bangun Datar</h1>
+    </header>
+    <div class="container">
+      <h2>Hitung Persegi Panjang</h2>
+      <div class="row g-4">
+        <!-- Card Luas -->
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header bg-primary text-white text-center">
+              Luas Persegi Panjang
+            </div>
+            <div class="card-body text-center">
+              <!-- SVG Persegi Panjang -->
+              <div class="svg-shape">
+                <svg width="160" height="120">
+                  <rect
+                    x="10"
+                    y="20"
+                    width="140"
+                    height="80"
+                    stroke="black"
+                    fill="none"
+                    stroke-width="3"
+                  />
+                </svg>
+              </div>
 
-    <input type="radio" name="opsi" value="luas" checked /> Luas P x L<br />
-    <input type="radio" name="opsi" value="keliling" /> Keliling 2 x (P + L)<br />
+              <p>Rumus Luas Persegi Panjang yaitu:</p>
+              <p class="rumus">L = p × l</p>
+              <p>
+                Di mana:<br />
+                L = Luas<br />
+                p = Panjang<br />
+                l = Lebar
+              </p>
 
-    <button onclick="hitung()">Hitung</button>
-    <p id="hasil"></p>
+              <h5 class="mt-3">Hitung Luas</h5>
+              <input
+                type="number"
+                id="panjangLuas"
+                class="form-control mb-2"
+                placeholder="Nilai Panjang"
+              />
+              <input
+                type="number"
+                id="lebarLuas"
+                class="form-control mb-2"
+                placeholder="Nilai Lebar"
+              />
 
-    <br />
-    <a href="index.html"><button>Kembali ke Home</button></a>
+              <!-- Hasil dipindah ke atas tombol -->
+              <p class="hasil" id="hasilLuas"></p>
+
+              <button
+                class="btn btn-primary btn-sm w-100 mb-2"
+                onclick="hitungLuas()"
+              >
+                Hitung
+              </button>
+              <button
+                class="btn btn-reset btn-sm w-100"
+                onclick="resetHasil('hasilLuas',['panjangLuas','lebarLuas'])"
+              >
+                Reset
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card Keliling -->
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header bg-primary text-white text-center">
+              Keliling Persegi Panjang
+            </div>
+            <div class="card-body text-center">
+              <!-- SVG Persegi Panjang -->
+              <div class="svg-shape">
+                <svg width="160" height="120">
+                  <rect
+                    x="10"
+                    y="20"
+                    width="140"
+                    height="80"
+                    stroke="black"
+                    fill="none"
+                    stroke-width="3"
+                  />
+                </svg>
+              </div>
+
+              <p>Rumus Keliling Persegi Panjang yaitu:</p>
+              <p class="rumus">K = 2 × (p + l)</p>
+              <p>
+                Di mana:<br />
+                K = Keliling<br />
+                p = Panjang<br />
+                l = Lebar
+              </p>
+
+              <h5 class="mt-3">Hitung Keliling</h5>
+              <input
+                type="number"
+                id="panjangKeliling"
+                class="form-control mb-2"
+                placeholder="Nilai Panjang"
+              />
+              <input
+                type="number"
+                id="lebarKeliling"
+                class="form-control mb-2"
+                placeholder="Nilai Lebar"
+              />
+
+              <!-- Hasil dipindah ke atas tombol -->
+              <p class="hasil" id="hasilKeliling"></p>
+
+              <button
+                class="btn btn-primary btn-sm w-100 mb-2"
+                onclick="hitungKeliling()"
+              >
+                Hitung
+              </button>
+              <button
+                class="btn btn-reset btn-sm w-100"
+                onclick="resetHasil('hasilKeliling',['panjangKeliling','lebarKeliling'])"
+              >
+                Reset
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tombol kembali -->
+      <div class="text-center mt-4">
+        <a href="index.html" class="btn btn-secondary">⬅ Kembali ke Home</a>
+      </div>
+    </div>
 
     <script>
-      function hitung() {
-        const p = parseFloat(document.getElementById("panjang").value);
-        const l = parseFloat(document.getElementById("lebar").value);
-        const opsi = document.querySelector('input[name="opsi"]:checked').value;
-        let hasil = 0;
-
-        if (opsi === "luas") {
-          hasil = p * l;
-          document.getElementById(
-            "hasil"
-          ).innerText = `Luas persegi panjang = ${hasil}`;
-        } else {
-          hasil = 2 * (p + l);
-          document.getElementById(
-            "hasil"
-          ).innerText = `Keliling persegi panjang = ${hasil}`;
+      function hitungLuas() {
+        const p = parseFloat(document.getElementById("panjangLuas").value);
+        const l = parseFloat(document.getElementById("lebarLuas").value);
+        if (!p || !l) {
+          document.getElementById("hasilLuas").innerText =
+            "Masukkan panjang dan lebar!";
+          return;
         }
+        const hasil = p * l;
+        document.getElementById("hasilLuas").innerText = "Luas = " + hasil;
+      }
+
+      function hitungKeliling() {
+        const p = parseFloat(document.getElementById("panjangKeliling").value);
+        const l = parseFloat(document.getElementById("lebarKeliling").value);
+        if (!p || !l) {
+          document.getElementById("hasilKeliling").innerText =
+            "Masukkan panjang dan lebar!";
+          return;
+        }
+        const hasil = 2 * (p + l);
+        document.getElementById("hasilKeliling").innerText =
+          "Keliling = " + hasil;
+      }
+
+      function resetHasil(idHasil, idsInput) {
+        document.getElementById(idHasil).innerText = "";
+        idsInput.forEach((id) => (document.getElementById(id).value = ""));
       }
     </script>
   </body>
